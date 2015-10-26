@@ -91,6 +91,26 @@ public class genderAnalyticReducer extends Reducer<Text, Text, Text, Text> {
 					
 			
 		}
+		else if(currentKey.contains("*")){
+			Double totalTripDistance =0.00;
+			int noOfTrips =0;
+			Double averageTripDistance=0.00;
+			for (Text value : values) {
+				String str = value.toString();
+				Double currentDistance = Double.parseDouble(str);
+				System.out.println("CurrentDistance"+currentDistance);
+				totalTripDistance += currentDistance;
+				noOfTrips += incrementCounter;
+				System.out.println("Trip #:"+noOfTrips);		
+			}
+			System.out.println("TotalDistance"+totalTripDistance);
+			System.out.println("TripCount"+noOfTrips);
+			averageTripDistance = totalTripDistance/noOfTrips;
+			String avgDistance = Double.toString(averageTripDistance);
+			context.write(new Text("Average Trip Distance"), new Text(avgDistance));
+			
+		}
+		
 		else{
 			// Start of Code to Find the number of Male,Female and Unknown users
 			

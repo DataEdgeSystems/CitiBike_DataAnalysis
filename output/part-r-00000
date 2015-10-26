@@ -1,0 +1,15 @@
+Average Trip Distance	0.925607232639951
+Age:26	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+Age:27	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+Age:28	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+Age:29	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+Age:30	****	Male Subscriber:0	Male Customer:0 	 Female Customer:0 	 Female Subscriber:1	Total:1 	Unknown:0
+Age:35	****	Male Subscriber:0	Male Customer:0 	 Female Customer:0 	 Female Subscriber:2	Total:2 	Unknown:0
+Age:39	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+Age:48	****	Male Subscriber:1	Male Customer:0 	 Female Customer:0 	 Female Subscriber:0	Total:1 	Unknown:0
+CustomerType	5
+SubscriberType	9
+female	3
+male	6
+unknown_age	5
+unknown_gender	5
