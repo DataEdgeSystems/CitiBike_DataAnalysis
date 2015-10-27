@@ -98,17 +98,34 @@ public class genderAnalyticReducer extends Reducer<Text, Text, Text, Text> {
 			for (Text value : values) {
 				String str = value.toString();
 				Double currentDistance = Double.parseDouble(str);
-				System.out.println("CurrentDistance"+currentDistance);
+				//System.out.println("CurrentDistance"+currentDistance);
 				totalTripDistance += currentDistance;
 				noOfTrips += incrementCounter;
-				System.out.println("Trip #:"+noOfTrips);		
+				//System.out.println("Trip #:"+noOfTrips);		
 			}
-			System.out.println("TotalDistance"+totalTripDistance);
-			System.out.println("TripCount"+noOfTrips);
+			//System.out.println("TotalDistance"+totalTripDistance);
+			//System.out.println("TripCount"+noOfTrips);
 			averageTripDistance = totalTripDistance/noOfTrips;
 			String avgDistance = Double.toString(averageTripDistance);
 			context.write(new Text("Average Trip Distance"), new Text(avgDistance));
 			
+		}
+		else if(currentKey.contains("#")){
+			System.out.println("Hash found");
+			int startCounter=0;
+			int endCounter=0;
+			for (Text value : values) {
+				String str = value.toString();
+				//System.out.println("STR: "+str);
+				if(str.equals("E")){
+				endCounter += incrementCounter;}
+				else if(str.equals("S")){
+					startCounter+=incrementCounter;
+				}
+			}
+			String outputKey = "Station ID:"+currentKey.replaceAll("#","");
+			String outputValue = "Trips from:"+Integer.toString(startCounter)+"\t Trips to:"+Integer.toString(endCounter);
+			context.write(new Text(outputKey), new Text(outputValue));
 		}
 		
 		else{

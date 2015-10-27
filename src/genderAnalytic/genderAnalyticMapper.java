@@ -93,15 +93,22 @@ public class genderAnalyticMapper extends Mapper<LongWritable, Text, Text, Text>
 		double endLatitude = Double.parseDouble(tokenized_data[9]);
 		double endLongitude = Double.parseDouble(tokenized_data[10]);
 		double totalDistance = distance(startLatitude,startLongitude,endLatitude,endLongitude,"M");
-		System.out.println(totalDistance);
+		//System.out.println(totalDistance);
 		String currentUserTripDistance = Double.toString(totalDistance);
-		//End of Code to find the average distance by Citi-Bike Users
 		context.write(new Text("*"),new Text(currentUserTripDistance));
+		//End of Code to find the average distance by Citi-Bike Users
+				
+		
+		//Start of Code to find the most popular stations
+		int startStationID = Integer.parseInt(tokenized_data[3]);
+		int endStationID = Integer.parseInt(tokenized_data[7]);
+		context.write(new Text("#"+startStationID),new Text("S"));
+		context.write(new Text("#"+endStationID),new Text("E"));
 		
 		
-		
+		//End of Code to find the most popular stations
 	}
-	
+	/*::	This function computes the distance between two points using latitudes and longitudes						 :*/
 	private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
 		double theta = lon1 - lon2;
 		double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
@@ -117,17 +124,16 @@ public class genderAnalyticMapper extends Mapper<LongWritable, Text, Text, Text>
 		return (dist);
 	}
 
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-	/*::	This function converts decimal degrees to radians						 :*/
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	private static double deg2rad(double deg) {
 		return (deg * Math.PI / 180.0);
 	}
 
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	/*::	This function converts radians to decimal degrees						 :*/
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 	private static double rad2deg(double rad) {
 		return (rad * 180 / Math.PI);
 	}
+	
+	
+	
+	
 }
