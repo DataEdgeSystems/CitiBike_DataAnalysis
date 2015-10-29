@@ -11,7 +11,25 @@ Other deliverables of this project would be to identify hot-spot locations and p
 
 Datasets
 =======
-
 * Citi Bike Trip Histories
 * Citi Bike Daily Ridership and Membership Data
+* Citi Bike availability Dataset ( Custom )
+
+
+
+Analytics
+=======
+
+The following are the list of analytics that are completed.
+
+```bash
+
+* Number of Subscribers and Customers
+* Number of Subscribers and Customers for each gender
+* Number of Subscribers and Customers for each gender in every age category
+* Average Trip Distance
+* Week Stats : Identify the day with most trips
+* Most Popular Stations : Identify the stations with most originating trips and destinations.
+
+```
 
