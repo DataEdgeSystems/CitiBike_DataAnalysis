@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.text.*;
+import java.util.Date;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.io.LongWritable;
+
 
 import java.util.StringTokenizer;
 
@@ -107,6 +110,34 @@ public class genderAnalyticMapper extends Mapper<LongWritable, Text, Text, Text>
 		
 		
 		//End of Code to find the most popular stations
+		
+		
+		// Start of Code to find the DAY of the week with most trips
+		
+		String dateTimeValue = tokenized_data[1];// Start Date and Time is in Index Position 1
+		String[] dateTimeSplit = dateTimeValue.split(" "); // Both date and Time are in the same location. Have to be Split
+		String currentTripDate = dateTimeSplit[0];
+		
+		try {
+			String input_date= currentTripDate;
+			SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+			Date dt1=format1.parse(input_date);
+			DateFormat format2=new SimpleDateFormat("EEEE"); 
+			String finalDay=format2.format(dt1);
+			System.out.println("Day:"+finalDay);
+			
+			context.write(new Text("$"),new Text(finalDay));
+			// $ is the unique Key to identify the KEY_VALUE pairs from the mapper which correspond to the days of the week
+			} 
+			catch (ParseException e) { 
+			System.out.println("Unparseable using "); 
+			}
+		
+		
+		
+		// End of Code to find the DAY of the week with most trips
+		
+		
 	}
 	/*::	This function computes the distance between two points using latitudes and longitudes						 :*/
 	private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
